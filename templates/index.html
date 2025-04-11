@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پیش‌بینی خروج مشتری</title>
+    <link href="https://cdn.jsdelivr.net/gh/fontsource/iransans/font.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* تنظیمات عمومی */
+        body {
+            font-family: 'IranSans', sans-serif;
+            background: linear-gradient(135deg, #70c1b3, #6b8e23);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .container:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-out;
+        }
+        p {
+            font-size: 18px;
+            color: #555;
+            animation: fadeIn 2s ease-out;
+        }
+
+        /* انیمیشن خوش آمد گویی */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* دکمه شروع تحلیل */
+        .btn-start {
+            background-color: #70c1b3;
+            border-color: #70c1b3;
+            color: #fff;
+            font-size: 20px;
+            padding: 15px 30px;
+            border-radius: 50px;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .btn-start:hover {
+            background-color: #5a9a7d;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .btn-start:focus {
+            outline: none;
+        }
+
+        /* پیام در حال بارگذاری */
+        .loading-message {
+            display: none;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            background-color: #ffeb3b;
+            padding: 10px;
+            border-radius: 10px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* انیمیشن محو شدن */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* فوتر */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #888;
+            animation: slideUp 1s ease-in-out;
+        }
+        .footer a {
+            color: #70c1b3;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: #555;
+            text-decoration: underline;
+        }
+
+        /* انیمیشن فوتر */
+        @keyframes slideUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- هدر صفحه -->
+        <div>
+            <h1>خوش آمدید</h1>
+            <p>با استفاده از این ابزار، می‌توانید پیش‌بینی کنید که آیا مشتریان شما احتمالاً خدمات را ترک خواهند کرد یا خیر.</p>
+        </div>
+
+        <!-- دکمه شروع تحلیل -->
+        <div>
+            <h3>برای شروع تحلیل داده‌ها، روی دکمه زیر کلیک کنید</h3>
+            <button id="startAnalysis" class="btn-start">شروع تحلیل</button>
+            <!-- پیام در حال بارگذاری -->
+            <div class="loading-message" id="loadingMessage">در حال پردازش داده‌ها...</div>
+        </div>
+
+        <!-- فوتر -->
+        <div class="footer">
+            <p>&copy; 2025 پیش‌بینی خروج مشتری | تمامی حقوق محفوظ است | <a href="#">درباره ما</a></p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // نمایش پیام در حال بارگذاری و ارسال درخواست به سرور Flask
+        document.getElementById('startAnalysis').addEventListener('click', function() {
+            const loadingMessage = document.getElementById('loadingMessage');
+            loadingMessage.style.display = 'block'; // نمایش پیام در حال بارگذاری
+
+            // ارسال درخواست به سرور Flask
+            fetch('/result', {
+                method: 'GET'
+            })
+            .then(response => response.text())
+            .then(data => {
+                // هدایت به صفحه نتایج
+                window.location.href = '/result';
+            })
+            .catch(error => {
+                console.error('خطا:', error);
+                alert('خطا در اتصال به سرور!');
+            });
+        });
+    </script>
+</body>
+</html>

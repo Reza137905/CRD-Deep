@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نتایج</title>
+    <!-- لینک به فایل‌های CSS بوت‌استرپ -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <style>
+        /* تنظیمات کلی صفحه */
+        body {
+            font-family: 'IranSans', sans-serif;
+            background-color: #f9fafb;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* تنظیمات ظاهری کانتینر اصلی */
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* انیمیشن ظاهر شدن عنوان */
+        h1 {
+            font-size: 38px;
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: slideIn 1s ease-out;
+        }
+
+        /* انیمیشن‌های سفارشی */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* تنظیمات جدول */
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 30px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .table th,
+        .table td {
+            padding: 14px;
+            text-align: center;
+            border: none;
+            font-size: 14px;
+        }
+
+        .table thead {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .table tbody tr:hover {
+            background-color: #e8f5e9;
+            transition: background-color 0.3s ease;
+        }
+
+        /* دکمه انتقال به صفحه ارزیابی */
+        .btn-primary {
+            background-color: #4caf50;
+            border: none;
+            font-size: 18px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover {
+            background-color: #43a047;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* تنظیمات پاورقی */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- کانتینر اصلی -->
+    <div class="container">
+        <h1>نتایج تحلیل</h1>
+
+        <!-- جدول نتایج -->
+        <div class="table-container">
+            {{ table_html|safe }}
+        </div>
+
+        <!-- دکمه انتقال به صفحه ارزیابی -->
+        <div class="text-center">
+            <a href="{{ url_for('evaluation') }}" class="btn btn-primary">انتقال به صفحه ارزیابی</a>
+        </div>
+
+        <!-- پاورقی -->
+        <div class="footer">
+            طراحی و توسعه با ❤️ توسط گروه ما
+        </div>
+    </div>
+
+    <!-- لینک به فایل‌های JavaScript بوت‌استرپ -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

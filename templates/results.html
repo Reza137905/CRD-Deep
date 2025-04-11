@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نتایج</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>نتایج پیش‌بینی</h2>
+        
+        <!-- بخش نمایش داده‌ها -->
+        <div class="table-responsive">
+            {{ data | safe }}
+        </div>
+
+        <!-- بخش صفحه‌بندی -->
+        <div class="pagination">
+            {{ pagination.links }}
+        </div>
+    </div>
+</body>
+</html>

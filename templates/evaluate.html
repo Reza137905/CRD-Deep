@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ارزیابی مدل</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            direction: rtl;
+            font-family: Tahoma, sans-serif;
+        }
+        .table th, .table td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="text-center">ارزیابی مدل</h1>
+
+    <!-- نمایش نتایج ارزیابی -->
+    <div class="mt-4">
+        <h3>معیارهای ارزیابی</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>معیار</th>
+                    <th>مقدار</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>دقت</td>
+                    <td>{{ accuracy }}</td>
+                </tr>
+                <tr>
+                    <td>F1-score</td>
+                    <td>{{ f1_score }}</td>
+                </tr>
+                <tr>
+                    <td>یادآوری</td>
+                    <td>{{ recall }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- نمایش نمودار ارزیابی -->
+        <div class="mt-4">
+            <h3>نمودار عملکرد مدل</h3>
+            <img src="{{ chart_url }}" alt="نمودار ارزیابی" class="img-fluid">
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
